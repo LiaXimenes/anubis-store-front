@@ -15,10 +15,10 @@ export default function Login(){
                 
 
                 <h1>AnúbisStore</h1>
-                <p>Everything your cat needs. By Kat Dee</p>
+                <h2>Everything your cat needs. By Kat Dee</h2>
 
-                <input/>
-                <input/>
+                <input type="text" placeholder="Email"/>
+                <input type="password" placeholder="Senha"/>
 
                 <button>Entrar</button>
                 <Link to="/sign-up">
@@ -35,31 +35,56 @@ const FrontPage = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    align-items: center;
 
     h1{
-        font-size: 40px;
+        font-size: 70px;
         font-family: 'Mountains of Christmas', cursive;
+        
     }
 
+    h2{
+        font-size: 14px;
+        margin-bottom: 30px;
+    }
+
+
     input{
+        width: 340px;
+        height: 45px;
+        margin-bottom: 15px;
+        border-radius: 5px;
+        padding-left: 10px;
 
     }
 
 
     button{
-        width: 100px;
-        height: 25px;
+        width: 350px;
+        height: 45px;
+        background: #F0A500;
+        margin-bottom: 30px;
+        border-radius: 5px;
     }
+
+    p{
+        margin-bottom: 30px;
+        color: black;
+
+    }
+
 `;
 
 const Photo = styled.div`
+    width: 100%;
     background: black;
     display: flex;
     justify-content: center;
+    margin-bottom: 30px;
 
     img{
         width: 400px;
         height: 500px;
     }
 
-`
+`;
