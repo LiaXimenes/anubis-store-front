@@ -6,26 +6,30 @@ import { useState, useContext, useEffect } from 'react';
 import gato from "../images/gato.png"
 
 export default function Login(){
+    const [user, setUser] = useState([])
+
+    
     return(
-        <>
-            <FrontPage>
-                <Photo>
-                    <img src={gato}/>
-                </Photo>
-                
+        
+        <FrontPage>
+            <Photo>
+                <img src={gato}/>
+            </Photo>
+            
 
-                <h1>AnúbisStore</h1>
-                <h2>Everything your cat needs. By Kat Dee</h2>
+            <h1>AnúbisStore</h1>
+            <h2>Everything your cat needs. By Kat Dee</h2>
 
-                <input type="text" placeholder="Email"/>
-                <input type="password" placeholder="Senha"/>
+            <input type="text" placeholder="Email"/>
+            <input type="password" placeholder="Senha"/>
 
-                <button>Entrar</button>
-                <Link to="/sign-up">
-                    <p>Ainda não tem cadastro? Faça agora!</p>
-                </Link>
-            </FrontPage>
-        </>
+            <button>Entrar</button>
+
+            <Link to="/sign-up">
+                <p>Ainda não tem cadastro? Faça agora!</p>
+            </Link>
+        </FrontPage>
+        
     )
 }
 

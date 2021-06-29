@@ -4,7 +4,8 @@ import {useState} from "react";
 
 import UserContext from './context/UserContext';
 
-import Login from "./components/LogInPage.js"
+import Login from "./components/LogInPage.js";
+import Signup from "./components/SignUpPage.js"
 
 
 function App(){
@@ -16,6 +17,9 @@ function App(){
 			<Switch>
 				<Route path="/" exact>
                     <Login />
+				</Route>
+                <Route path="/sign-up" exact>
+                    <Signup />
 				</Route>
             
 			</Switch>
