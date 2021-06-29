@@ -47,12 +47,18 @@ export default function Signup(){
 
     return(
         <FrontPage>
-            <Photo>
-                <img src={gato}/>
-            </Photo>
+            <Entrance>
+                <Photo>
+                    <img src={gato}/>
+                </Photo>
+                
+                <Name>
+                    <h1>AnúbisStore</h1>
+                    <h2>Everything your cat needs. By Kat Dee</h2>
+                </Name>
+                
+            </Entrance>
 
-            <h1>AnúbisStore</h1>
-            <h2>Everything your cat needs. By Kat Dee</h2>
 
             <input type="text" placeholder="Nome" value={name} onChange={(e) => setName(e.target.value)}/>
             <input type="texte" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)}/>
@@ -77,17 +83,6 @@ const FrontPage = styled.div`
     justify-content: space-around;
     align-items: center;
 
-    h1{
-        font-size: 70px;
-        font-family: 'Mountains of Christmas', cursive;
-        
-    }
-
-    h2{
-        font-size: 14px;
-        margin-bottom: 30px;
-    }
-
     input{
         width: 340px;
         height: 45px;
@@ -102,15 +97,11 @@ const FrontPage = styled.div`
         background: #F0A500;
         margin-bottom: 30px;
         border-radius: 5px;
-        font-family: 'Raleway', sans-serif;
-        font-size: 15px;
     }
 
     p{
         margin-bottom: 30px;
         color: black;
-        font-family: 'Raleway', sans-serif;
-        font-size: 15px;
     }
 `;
 
@@ -124,5 +115,32 @@ const Photo = styled.div`
     img{
         width: 500px;
         height: 500px;
+    }
+`;
+
+const Entrance = styled.div`
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+`;
+
+const Name = styled.div`
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    h1{
+        font-size: 70px;
+        font-family: 'Mountains of Christmas', cursive;
+    }
+
+    h2{
+        font-size: 14px;
+        margin-left: 40px;
     }
 `;

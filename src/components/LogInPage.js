@@ -56,13 +56,18 @@ export default function Login(){
 
     return(
         <FrontPage>
-            <Photo>
-                <img src={gato}/>
-            </Photo>
-            
-
-            <h1>AnúbisStore</h1>
-            <h2>Everything your cat needs. By Kat Dee</h2>
+            <Entrance>
+                <Photo>
+                    <img src={gato}/>
+                </Photo>
+                
+                <Name>
+                    <h1>AnúbisStore</h1>
+                    <h2>Everything your cat needs. By Kat Dee</h2>
+                </Name>
+                
+            </Entrance>
+           
 
             <input type="texte" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)}/>
             <input type="password" placeholder="Senha" value={password} onChange={(e) => setPassword(e.target.value)}/>
@@ -84,27 +89,13 @@ const FrontPage = styled.div`
     justify-content: space-around;
     align-items: center;
 
-    h1{
-        font-size: 70px;
-        font-family: 'Mountains of Christmas', cursive;
-        
-    }
-
-    h2{
-        font-size: 14px;
-        margin-bottom: 30px;
-    }
-
-
     input{
         width: 340px;
         height: 45px;
         margin-bottom: 15px;
         border-radius: 5px;
         padding-left: 10px;
-
     }
-
 
     button{
         width: 350px;
@@ -119,7 +110,6 @@ const FrontPage = styled.div`
         color: black;
 
     }
-
 `;
 
 const Photo = styled.div`
@@ -133,5 +123,32 @@ const Photo = styled.div`
         width: 400px;
         height: 500px;
     }
+`;
 
+const Entrance = styled.div`
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+`;
+
+const Name = styled.div`
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    h1{
+        font-size: 70px;
+        font-family: 'Mountains of Christmas', cursive;
+        
+    }
+
+    h2{
+        font-size: 14px;
+        margin-left: 40px;
+    }
 `;
