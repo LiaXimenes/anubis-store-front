@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import axios from 'axios'
 import { Link, useHistory } from "react-router-dom";
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
 
 import gato from "../images/gato2.png"
 
@@ -25,8 +25,7 @@ export default function Signup(){
             setName(""); 
             setPassword("");
             setConfirmPassword(""); 
-            setEmail("");
-
+            setEmail("")
         } else{
             const request = axios.post("http://localhost:4000/sign-up", body);
             request.then(() => history.push("/"))
@@ -97,11 +96,15 @@ const FrontPage = styled.div`
         background: #F0A500;
         margin-bottom: 30px;
         border-radius: 5px;
+        font-family: 'Raleway', sans-serif;
+        font-size: 15px;
     }
 
     p{
         margin-bottom: 30px;
         color: black;
+        font-family: 'Raleway', sans-serif;
+        font-size: 15px;
     }
 `;
 

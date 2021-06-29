@@ -65,9 +65,7 @@ export default function Login(){
                     <h1>AnúbisStore</h1>
                     <h2>Everything your cat needs. By Kat Dee</h2>
                 </Name>
-                
             </Entrance>
-           
 
             <input type="texte" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)}/>
             <input type="password" placeholder="Senha" value={password} onChange={(e) => setPassword(e.target.value)}/>
@@ -103,12 +101,15 @@ const FrontPage = styled.div`
         background: #F0A500;
         margin-bottom: 30px;
         border-radius: 5px;
+        font-family: 'Raleway', sans-serif;
+        font-size: 15px;
     }
 
     p{
         margin-bottom: 30px;
         color: black;
-
+        font-family: 'Raleway', sans-serif;
+        font-size: 15px;
     }
 `;
 
@@ -144,7 +145,6 @@ const Name = styled.div`
     h1{
         font-size: 70px;
         font-family: 'Mountains of Christmas', cursive;
-        
     }
 
     h2{
