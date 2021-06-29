@@ -9,10 +9,10 @@ import Signup from "./components/SignUpPage.js"
 
 
 function App(){
-    //const [user, setUser] = useState(localStorage.length!==0 ? JSON.parse(localStorage.getItem('list')) : [])
+    const [user, setUser] = useState(localStorage.length!==0 ? JSON.parse(localStorage.getItem('list')) : [])
 
     return(
-        <UserContext.Provider >
+        <UserContext.Provider value={{user, setUser}}>
             <BrowserRouter> 
 			<Switch>
 				<Route path="/" exact>
