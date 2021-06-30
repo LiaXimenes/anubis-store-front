@@ -23,21 +23,27 @@ export default function Home () {
     }
     return(
         <Body>
-            TESTE CARALHO
-            <WelcomeBox></WelcomeBox>
+            <WelcomeBox>CONTEÚDO</WelcomeBox>
             {printProducts()}
         </Body>
     );
 };
 const Body = styled.div`
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     background-color: #F4F4F4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 150px 150px 500px 150px;
+`;
+const WelcomeBox = styled.div`
+    width: calc(100vw/2);
+    height: calc(100vw/4);
+    background-color: beige;
+    margin-bottom: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 165px;
-`;
-const WelcomeBox = styled.div`
-
 `;

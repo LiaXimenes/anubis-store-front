@@ -28,15 +28,16 @@ export default function Products ({allProducts}) {
 }
 
 const Body = styled.div`
-    width: 100%;
-    height: auto;
-    display: flex;  
-`;
-const List = styled.div`
     width: 80%;
     height: auto;
     display: flex;
     align-items: center;
+
+`;
+const List = styled.div`
+    width: auto;
+    height: auto;
+    display: flex;
     justify-content: center;
     flex-wrap: wrap;
 `;
@@ -45,7 +46,7 @@ const ProductBox = styled.div`
     height: 300px;
     background-color: #CF7500;
     position: relative;
-    margin: 10px;
+    margin: 30px 10px 30px 10px;
 `;
 const Button = styled.div`
     width: 140px;
