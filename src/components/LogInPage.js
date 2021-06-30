@@ -32,7 +32,7 @@ export default function Login(){
 
 
     function loginCustomer(){
-        const request = axios. post("http://localhost:4000/log-in", body);
+        const request = axios.post("http://localhost:4000/log-in", body);
         request.then((response) => {console.log(response.data)
             setUser(response.data);
 
