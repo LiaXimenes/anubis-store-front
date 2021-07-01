@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
-export default function Products ({allProducts}) {
+export default function Products ({allProducts, setSelectedProducts}) {
     function addOnCart(id){
         //to-do
     };
+    
     return (
         <Body>
             <List>

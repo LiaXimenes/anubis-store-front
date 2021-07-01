@@ -1,13 +1,20 @@
 import styled from 'styled-components';
 import axios from 'axios';
 import { useState } from 'react';
-import Products from './Products';
 import { BiCart } from 'react-icons/bi';
 import { BsPersonDash, BsPersonPlus } from "react-icons/bs";
 import { FaCcVisa, FaCcMastercard, FaTelegramPlane, FaWhatsapp, FaFacebookSquare } from "react-icons/fa";
+import { useHistory } from 'react-router-dom';
+
+import Products from './Products';
+import CartSideBar from './CartSideBar';
 
 export default function Home () {
     const [allProducts, setAllProducts] = useState('');
+    const [show, setShow] = useState(false);
+    const [selectedProducts, setSelectedProducts] = useState ("")
+
+    let history = useHistory();
     
     try {
         axios.get('http://localhost:4000/').then((req)=>{
@@ -23,8 +30,15 @@ export default function Home () {
                 <p>Sem estoque no momento.</p>
             );
         } else {
-            return <Products allProducts={allProducts} />
+            return <Products setSelectedProducts={setSelectedProducts} allProducts={allProducts} />
         }
+    }
+
+    function goToCart(){
+        
+        console.log(show)
+        return  <CartSideBar selectedProducts={selectedProducts} show={show} setShow={setShow}/>
+        
     }
 
     return(
@@ -37,13 +51,13 @@ export default function Home () {
 
                     </Name>
                     <Options>
-                        <button>
+                        <button onClick={() => {history.push("/sign-in")}}>
                             <BsPersonPlus size="2em" color="#fff" />
                         </button>
-                        <button>
+                        <button onClick={() => {localStorage.removeItem('list'); history.push("/sign-in")}}>
                             <BsPersonDash size="2em" color="#fff" />
                         </button>
-                        <Cart>
+                        <Cart onClick={() => {setShow(true); goToCart()}}>
                             <BiCart size="2em" color="#fff"/> 
                         </Cart>
                     </Options>
@@ -52,26 +66,12 @@ export default function Home () {
                 <WelcomeBox>CONTEÚDO</WelcomeBox>
 
                 <Categories>
-                    <Each>Diferente</Each>
-                    <Each>Diferente</Each>
-                    <Each>Diferente</Each>
-                    <Each>Diferente</Each>
-                    <Each>Diferente</Each>
-                    <Each>Diferente</Each>
-                    <Each>Diferente</Each>
-                    <Each>Diferente</Each>
-                    <Each>Diferente</Each>
-                    <Each>Diferente</Each>
-                    <Each>Diferente</Each>
-                    <Each>Diferente</Each>
-                    <Each>Diferente</Each>
-                    <Each>Diferente</Each>
-                    <Each>Diferente</Each>
-                    <Each>Diferente</Each>
-                    <Each>Diferente</Each>
+                    <Each>Inserir Categorias</Each>
                 </Categories>
 
                 {printProducts()}
+
+                <CartSideBar></CartSideBar>
 
                 
             </Body>
@@ -83,7 +83,6 @@ export default function Home () {
                     <p>Trocas e Devoluções</p>
                     <p>Entregas</p>
                     <p>Promoções</p>
-
                 </span>
 
                 <span>
@@ -102,8 +101,6 @@ export default function Home () {
                         <FaCcVisa size="2em" color="#fff"/>
                         <FaCcMastercard size="2em" color="#fff"/>
                     </div>
-                   
-
                 </span>
             </Footer>
         
@@ -146,8 +143,8 @@ const Options = styled.div`
         width: 50px;
         height: 40px;
         background: #FA7D09;
-        border-left: solid 1px #3C8DAD; //#444444
-        border-top: solid 1px #3C8DAD; //#444444
+        border-left: solid 1px #444; 
+        border-top: solid 1px #444; 
         display: flex;
         align-items: center;
         justify-content: center;
@@ -159,7 +156,7 @@ const Options = styled.div`
 `;
 
 const Cart = styled.button`
-    border-right: solid 1px #3C8DAD; //#444444
+    border-right: solid 1px #444;
 `;
 
 const Categories = styled.ul`
