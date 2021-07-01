@@ -1,8 +1,18 @@
 import styled from "styled-components";
+import {useContext, useState} from 'react';
+import UserContext from '.../context/UserContext.js';
+import axios from "axios";
 
 export default function Products ({allProducts}) {
-    function addOnCart(id){
-        //to-do
+
+    const [onCart, setOncart] = useState('');
+    const {user, setUser} = useContext(UserContext);
+
+    function addOnCart(productId){
+        //preciso pegar o token
+        axios.post("http://localhost:4000/cart", {productId}, {
+            'Authorization': `bearer ${token}`
+        }).then().catch()
     };
     console.log(allProducts);
     return (
