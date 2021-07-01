@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { FiTrash2 } from "react-icons/fi";
 
 export default function CartSideBar({show, setShow, selectedProducts}){
+    const totalPrice = 0;
 
     function mapOfProducts(){
         if(!selectedProducts.length){
@@ -56,25 +57,11 @@ export default function CartSideBar({show, setShow, selectedProducts}){
 
                     {mapOfProducts()}
 
-                    <Product>
-                        <div>
-                            <h1>Coleira Colorida para cahorro</h1>
-                            <p>0,00</p>
-                        </div>
-                        
-                        <ImgAndTrash>
-                            <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSJNZuV-Rr0lfWpTC8K3gu4k1fCCXAaqzLHFUrRvRZ6k67t9uNsXB_M77gP_H5efqL98lUb-13L&usqp=CAc"/>
-                            <button onClick={removeFromCart}>
-                                <FiTrash2 size="1.5em" color="#000" />
-                            </button>
-                        </ImgAndTrash>
-
-                    </Product>
                 </Products>
             
                 <TotalPrice>
                     <h1>Preço total:</h1>
-                    <p>0.000,00</p>
+                    <p>{totalPrice}</p>
                 </TotalPrice>
 
                 <Button onClick={confirmOrder()}>
@@ -131,7 +118,7 @@ const Header = styled.div`
     }
 `;
 
-const Products = styled.div`
+const Products = styled.ul`
     height:450px;
     overflow: scroll;
 
@@ -140,7 +127,7 @@ const Products = styled.div`
     }
 `;
 
-const Product = styled.div`
+const Product = styled.li`
     height: 80px;
     border-bottom: solid 1px #444;
     padding:20px;
