@@ -8,8 +8,7 @@ export default function CartSideBar({show, setShow, selectedProducts}){
             return(
                 <Product>
                     <p>Seu carrinho está Vazio</p>
-                </Product>
-                
+                </Product>                
             );
         } else{
             {selectedProducts.map((product) => {
@@ -28,7 +27,7 @@ export default function CartSideBar({show, setShow, selectedProducts}){
                         </ImgAndTrash>
                         
                     </Product>
-                )
+                );
             })}
         }
     }

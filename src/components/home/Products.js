@@ -4,14 +4,11 @@ import UserContext from '.../context/UserContext.js';
 import axios from "axios";
 
 export default function Products ({allProducts}) {
-
-    const [onCart, setOncart] = useState('');
     const {user, setUser} = useContext(UserContext);
 
     function addOnCart(productId){
-        //preciso pegar o token
         axios.post("http://localhost:4000/cart", {productId}, {
-            'Authorization': `bearer ${token}`
+            'Authorization': `bearer ${user}`
         }).then().catch()
     };
     console.log(allProducts);

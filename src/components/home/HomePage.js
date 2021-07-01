@@ -29,15 +29,19 @@ export default function Home () {
     }
     function PrintProducts(){
         if (allProducts.length === 0){
-            console.log(allProducts);
-            return(
+            console.log(allProducts);   
+            return( 
                 <p>Sem estoque no momento.</p>
             );
         } else {
-            return <Products setSelectedProducts={setSelectedProducts} allProducts={allProducts} />
+            return <Products allProducts={allProducts} />
         }
     }
     function goToCart(){
+        axios.get(`http://localhost:4000/cart`, {token}).then(()=>{
+            setShow(true);
+            setSelectedProducts(req.body);
+        })
         return  <CartSideBar selectedProducts={selectedProducts} show={show} setShow={setShow}/>
     }
 
@@ -55,7 +59,7 @@ export default function Home () {
                         <button onClick={() => {localStorage.removeItem('list'); history.push("/sign-in")}}>
                             <BsPersonDash size="2em" color="#fff" />
                         </button>
-                        <Cart onClick={() => {setShow(true)}}>
+                        <Cart onClick={goToCart}>
                             <BiCart size="2em" color="#fff"/> 
                         </Cart>
                     </Options>
@@ -63,7 +67,6 @@ export default function Home () {
                 <WelcomeBox>CONTEÚDO</WelcomeBox>
                 <Categories categoryToGo={categoryToGo} setCategoryToGo={setCategoryToGo} />
                 <PrintProducts />
-                {goToCart()}
             </Body>
             <Footer>
                 <span>
@@ -147,10 +150,6 @@ const Options = styled.div`
 const Cart = styled.button`
     border-right: solid 1px #444;
 `;
-
-
-
-
 
 const Body = styled.div`
     font-family: 'Raleway', sans-serif;
