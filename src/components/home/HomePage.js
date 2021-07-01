@@ -5,6 +5,7 @@ import Products from './Products';
 import { BiCart } from 'react-icons/bi';
 import { BsPersonDash, BsPersonPlus } from "react-icons/bs";
 import { FaCcVisa, FaCcMastercard, FaTelegramPlane, FaWhatsapp, FaFacebookSquare } from "react-icons/fa";
+import Categories from './Categories';
 
 export default function Home () {
     const [allProducts, setAllProducts] = useState('');
@@ -51,26 +52,7 @@ export default function Home () {
 
                 <WelcomeBox>CONTEÚDO</WelcomeBox>
 
-                <Categories>
-                    <Each>Diferente</Each>
-                    <Each>Diferente</Each>
-                    <Each>Diferente</Each>
-                    <Each>Diferente</Each>
-                    <Each>Diferente</Each>
-                    <Each>Diferente</Each>
-                    <Each>Diferente</Each>
-                    <Each>Diferente</Each>
-                    <Each>Diferente</Each>
-                    <Each>Diferente</Each>
-                    <Each>Diferente</Each>
-                    <Each>Diferente</Each>
-                    <Each>Diferente</Each>
-                    <Each>Diferente</Each>
-                    <Each>Diferente</Each>
-                    <Each>Diferente</Each>
-                    <Each>Diferente</Each>
-                </Categories>
-
+                <Categories />
                 {printProducts()}
 
                 
@@ -162,32 +144,9 @@ const Cart = styled.button`
     border-right: solid 1px #3C8DAD; //#444444
 `;
 
-const Categories = styled.ul`
-    width: 90%;
-    height: 70px;
-    margin: 50px;
-    background: #FF9234;
-    display: flex;
-    flex-direction: row;
-    overflow: scroll;
-    align-items: center;
-    border-radius: 5px;
 
-    ::-webkit-scrollbar {
-        display: none;
-    }
-`;
 
-const Each = styled.li`
-    width: 100px;
-    height: 40px;
-    padding: 10px;
 
-    :hover {
-        background: #FA7D09;
-        font-weight: bold;
-    }
-`;
 
 const Body = styled.div`
     width: 100%;
