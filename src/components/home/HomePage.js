@@ -34,9 +34,7 @@ export default function Home () {
             <Body>
                 <Header>
                     <Name>
-                        <p>AnúbisS.</p>
-
-
+                        <p onClick={() => {setCategoryToGo('')}} >AnúbisS.</p>
                     </Name>
                     <Options>
                         <button>
