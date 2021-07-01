@@ -6,10 +6,17 @@ import { BiCart } from 'react-icons/bi';
 import { BsPersonDash, BsPersonPlus } from "react-icons/bs";
 import { FaCcVisa, FaCcMastercard, FaTelegramPlane, FaWhatsapp, FaFacebookSquare } from "react-icons/fa";
 import Categories from './Categories';
+import CartSideBar from './CartSideBar';
+import { useHistory } from 'react-router-dom';
 
 export default function Home () {
     const [allProducts, setAllProducts] = useState('');
     const [categoryToGo, setCategoryToGo] = useState('');
+    const [show, setShow] = useState(false);
+    const [selectedProducts, setSelectedProducts] = useState ("")
+
+    let history = useHistory();
+    
     try {
         useEffect(()=>{
             axios.get(`http://localhost:4000/homepage${categoryToGo}`).then((req)=>{
@@ -27,11 +34,13 @@ export default function Home () {
                 <p>Sem estoque no momento.</p>
             );
         } else {
-            console.log(allProducts);
-
-            return <Products allProducts={allProducts} />
+            return <Products setSelectedProducts={setSelectedProducts} allProducts={allProducts} />
         }
     }
+    function goToCart(){
+        return  <CartSideBar selectedProducts={selectedProducts} show={show} setShow={setShow}/>
+    }
+
     return(
         <>
             <Body>
@@ -40,13 +49,13 @@ export default function Home () {
                         <p onClick={() => {setCategoryToGo('')}} >AnúbisS.</p>
                     </Name>
                     <Options>
-                        <button>
+                        <button onClick={() => {history.push("/sign-in")}}>
                             <BsPersonPlus size="2em" color="#fff" />
                         </button>
-                        <button>
+                        <button onClick={() => {localStorage.removeItem('list'); history.push("/sign-in")}}>
                             <BsPersonDash size="2em" color="#fff" />
                         </button>
-                        <Cart>
+                        <Cart onClick={() => {setShow(true)}}>
                             <BiCart size="2em" color="#fff"/> 
                         </Cart>
                     </Options>
@@ -54,6 +63,7 @@ export default function Home () {
                 <WelcomeBox>CONTEÚDO</WelcomeBox>
                 <Categories categoryToGo={categoryToGo} setCategoryToGo={setCategoryToGo} />
                 <PrintProducts />
+                {goToCart()}
             </Body>
             <Footer>
                 <span>
@@ -63,7 +73,6 @@ export default function Home () {
                     <p>Trocas e Devoluções</p>
                     <p>Entregas</p>
                     <p>Promoções</p>
-
                 </span>
 
                 <span>
@@ -82,8 +91,6 @@ export default function Home () {
                         <FaCcVisa size="2em" color="#fff"/>
                         <FaCcMastercard size="2em" color="#fff"/>
                     </div>
-                   
-
                 </span>
             </Footer>        
         </>
@@ -125,8 +132,8 @@ const Options = styled.div`
         width: 50px;
         height: 40px;
         background: #FA7D09;
-        border-left: solid 1px #3C8DAD; //#444444
-        border-top: solid 1px #3C8DAD; //#444444
+        border-left: solid 1px #444; 
+        border-top: solid 1px #444; 
         display: flex;
         align-items: center;
         justify-content: center;
@@ -138,7 +145,7 @@ const Options = styled.div`
 `;
 
 const Cart = styled.button`
-    border-right: solid 1px #3C8DAD; //#444444
+    border-right: solid 1px #444;
 `;
 
 
