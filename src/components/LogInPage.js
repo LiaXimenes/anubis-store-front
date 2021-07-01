@@ -26,20 +26,20 @@ export default function Login(){
             const list = JSON.parse(listString);
             setUser(list)
             console.log(list)
-            //history.push("/main-page")
+            history.push("/")
         }
     }, [])
 
 
     function loginCustomer(){
-        const request = axios. post("http://localhost:4000/log-in", body);
+        const request = axios.post("http://localhost:4000/log-in", body);
         request.then((response) => {console.log(response.data)
             setUser(response.data);
 
             const tokenString = JSON.stringify(user);
             localStorage.setItem('list', tokenString);
             console.log(localStorage.getItem('list'))   
-            //history.push("/main-page")
+            history.push("/")
         });
         request.catch(errors)
 
