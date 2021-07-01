@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Products from './Products';
 import { BiCart } from 'react-icons/bi';
 import { BsPersonDash, BsPersonPlus } from "react-icons/bs";
@@ -10,25 +10,28 @@ import Categories from './Categories';
 export default function Home () {
     const [allProducts, setAllProducts] = useState('');
     const [categoryToGo, setCategoryToGo] = useState('');
-    
     try {
-        axios.get(`http://localhost:4000/homepage${categoryToGo}`).then((req)=>{
-            setAllProducts(req.data);
-        });
+        useEffect(()=>{
+            axios.get(`http://localhost:4000/homepage${categoryToGo}`).then((req)=>{
+                setAllProducts(req.data);
+                console.log(req.data);
+            });
+        },[categoryToGo]);
     } catch(e) {
         console.log(e);
     }
-
-    function printProducts(){
-        if (!allProducts.length){
+    function PrintProducts(){
+        if (allProducts.length === 0){
+            console.log(allProducts);
             return(
                 <p>Sem estoque no momento.</p>
             );
         } else {
+            console.log(allProducts);
+
             return <Products allProducts={allProducts} />
         }
     }
-
     return(
         <>
             <Body>
@@ -48,13 +51,9 @@ export default function Home () {
                         </Cart>
                     </Options>
                 </Header>
-
                 <WelcomeBox>CONTEÚDO</WelcomeBox>
-
                 <Categories categoryToGo={categoryToGo} setCategoryToGo={setCategoryToGo} />
-                {printProducts()}
-
-                
+                <PrintProducts />
             </Body>
             <Footer>
                 <span>
@@ -86,8 +85,7 @@ export default function Home () {
                    
 
                 </span>
-            </Footer>
-        
+            </Footer>        
         </>
     );
 };
@@ -148,6 +146,7 @@ const Cart = styled.button`
 
 
 const Body = styled.div`
+    font-family: 'Raleway', sans-serif;
     width: 100%;
     height: 100%;
     background-color: #E8E2DB;
@@ -170,14 +169,14 @@ const WelcomeBox = styled.div`
 
 const Footer = styled.div`
     width:100%;
-    height: 150px;
+    height: 200px;
     background: #AAAAAA;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    font-family: 'Raleway', sans-serif;
     box-shadow: -5px 0px 5px 2px #C8C2BC;
-
+    font-family: 'Raleway', sans-serif;
+    padding: 15px;
     h1{
         font-size: 20px;
         padding-top:10px;

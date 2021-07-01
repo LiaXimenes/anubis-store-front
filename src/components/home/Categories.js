@@ -1,33 +1,39 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from 'styled-components';
-
 
 export default function Categories ({setCategoryToGo}) {
     const [categoriesList, setCategoriesList] = useState('');
     try {
-        axios.get('http://localhost:4000/categories').then((req)=>{
-            setCategoriesList(req.data)
-        })
+        useEffect(()=>{
+            axios.get('http://localhost:4000/categories').then((req)=>{
+                setCategoriesList(req.data)
+            });
+        },[]);
+        
         if (!categoriesList.length){
-            return;
+            return(<>
+            </>);
         } else {
             return (
-                <Categories>
+                <Body>
                     {categoriesList.map((c)=> {
                         return(
-                            <Each onClick={()=>{setCategoryToGo(c.name)}} >{c.name}</Each>
+                            <Each onClick={()=>{
+                                setCategoryToGo(`?category=${c.name}`);
+                                console.log(c.name);
+                            }} >{c.name}</Each>
                         );
                     })}
-                </Categories>
+                </Body>
             );
         }   
-    } catch {
+    } catch(e) {
         console.log(e);
     }   
 }
 
-const Categories = styled.ul`
+const Body = styled.ul`
     width: 90%;
     height: 70px;
     margin: 50px;
