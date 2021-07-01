@@ -59,5 +59,9 @@ const GlobalStyle = createGlobalStyle`
     a{
         text-decoration: none;
     }
+
+    input{
+        border:none;
+    }
 `;
 export default GlobalStyle;

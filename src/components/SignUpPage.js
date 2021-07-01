@@ -28,7 +28,7 @@ export default function Signup(){
             setEmail("")
         } else{
             const request = axios.post("http://localhost:4000/sign-up", body);
-            request.then(() => history.push("/"))
+            request.then(() => history.push("/sign-in"))
             request.catch(errors);
 
             function errors(error){
@@ -67,7 +67,7 @@ export default function Signup(){
             <button onClick={registerCostumer}>Cadastrar</button>
 
 
-            <Link to="/">
+            <Link to="/sign-in">
                 <p>Já tem cadastro? Entre agora!</p>
             </Link>
         </FrontPage>

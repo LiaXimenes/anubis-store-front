@@ -28,11 +28,9 @@ export default function Products ({allProducts}) {
 }
 
 const Body = styled.div`
-    width: 80%;
+    width: 90%;
     height: auto;
     display: flex;
-    align-items: center;
-
 `;
 const List = styled.div`
     width: auto;
@@ -44,34 +42,43 @@ const List = styled.div`
 const ProductBox = styled.div`
     width: 200px;
     height: 300px;
-    background-color: #CF7500;
+    background-color: #E8E2DB;
+    box-shadow: 5px 10px 8px #888888;
     position: relative;
-    margin: 30px 10px 30px 10px;
+    margin: 50px 20px;
 `;
-const Button = styled.div`
+const Button = styled.button`
     width: 140px;
     height: 30px;
-    border: none;
-    background-color: #F0A500;
+    background-color: #FF9234;
     color: #1A1C20;
     font-size: 12px;
+    font-family: 'Raleway', sans-serif;
     position: absolute;
     bottom: 20px;
     right: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 5px;
+
+
+    :hover {
+        background-color: #FA7D09;
+        font-weight: bold;
+    }
 `;
 const Image = styled.div`
     width: 160px;
     height: 160px;
     top: -40px;
     left: 20px;
-    background-color: #F0A500;
     position: absolute;
     img {
         width: 160px;
         height: 160px;
+        box-shadow: 5px 5px 2px #CACACA;
+        
     }
 `;
 const Infos = styled.div`
@@ -82,7 +89,7 @@ const Infos = styled.div`
     height: 170px;
     padding: 15px;
     h1 {
-        color: #F4F4F4;
+        color: #1A1C20;
         font-weight: 500;
         font-size: 20px;
         line-height: 32px;

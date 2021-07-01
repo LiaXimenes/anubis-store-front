@@ -26,7 +26,7 @@ export default function Login(){
             const list = JSON.parse(listString);
             setUser(list)
             console.log(list)
-            //history.push("/main-page")
+            history.push("/")
         }
     }, [])
 
@@ -39,7 +39,7 @@ export default function Login(){
             const tokenString = JSON.stringify(user);
             localStorage.setItem('list', tokenString);
             console.log(localStorage.getItem('list'))   
-            //history.push("/main-page")
+            history.push("/")
         });
         request.catch(errors)
 
