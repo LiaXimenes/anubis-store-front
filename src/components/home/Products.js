@@ -4,6 +4,7 @@ export default function Products ({allProducts}) {
     function addOnCart(id){
         //to-do
     };
+    console.log(allProducts);
     return (
         <Body>
             <List>
