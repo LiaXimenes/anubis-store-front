@@ -9,9 +9,10 @@ import Categories from './Categories';
 
 export default function Home () {
     const [allProducts, setAllProducts] = useState('');
+    const [categoryToGo, setCategoryToGo] = useState('');
     
     try {
-        axios.get('http://localhost:4000/').then((req)=>{
+        axios.get(`http://localhost:4000/homepage${categoryToGo}`).then((req)=>{
             setAllProducts(req.data);
         });
     } catch(e) {
@@ -52,7 +53,7 @@ export default function Home () {
 
                 <WelcomeBox>CONTEÚDO</WelcomeBox>
 
-                <Categories />
+                <Categories categoryToGo={categoryToGo} setCategoryToGo={setCategoryToGo} />
                 {printProducts()}
 
                 

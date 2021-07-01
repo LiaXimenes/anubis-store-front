@@ -1,6 +1,9 @@
 import axios from "axios";
+import { useState } from "react";
+import styled from 'styled-components';
 
-export default function Categories ({categoriesList}) {
+
+export default function Categories ({categoriesList, setCategoryToGo}) {
     const [categoriesList, setCategoriesList] = useState('');
     try {
         axios.get('http://localhost:4000/categories').then((req)=>{
@@ -13,7 +16,7 @@ export default function Categories ({categoriesList}) {
                 <Categories>
                     {categoriesList.map((c)=> {
                         return(
-                            <Each>{c.name}</Each>
+                            <Each onClick={()=>{setCategoryToGo(c.name)}} >{c.name}</Each>
                         )
                     })}
                 </Categories>
@@ -21,8 +24,7 @@ export default function Categories ({categoriesList}) {
         }   
     } catch {
         console.log(e);
-    }
-   
+    }   
 }
 
 const Categories = styled.ul`
