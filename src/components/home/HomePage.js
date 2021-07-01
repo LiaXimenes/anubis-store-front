@@ -35,10 +35,7 @@ export default function Home () {
     }
 
     function goToCart(){
-        
-        console.log(show)
         return  <CartSideBar selectedProducts={selectedProducts} show={show} setShow={setShow}/>
-        
     }
 
     return(
@@ -57,7 +54,7 @@ export default function Home () {
                         <button onClick={() => {localStorage.removeItem('list'); history.push("/sign-in")}}>
                             <BsPersonDash size="2em" color="#fff" />
                         </button>
-                        <Cart onClick={() => {setShow(true); goToCart()}}>
+                        <Cart onClick={() => {setShow(true)}}>
                             <BiCart size="2em" color="#fff"/> 
                         </Cart>
                     </Options>
@@ -69,11 +66,10 @@ export default function Home () {
                     <Each>Inserir Categorias</Each>
                 </Categories>
 
+                {goToCart()}
+
                 {printProducts()}
 
-                <CartSideBar></CartSideBar>
-
-                
             </Body>
             <Footer>
                 <span>
