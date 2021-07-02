@@ -32,6 +32,7 @@ export default function Signup(){
             request.catch(errors);
 
             function errors(error){
+                console.log(error)
                 if(error.response.status === 403){
                     alert("Esse email já foi cadastrado")
                 }
@@ -115,9 +116,17 @@ const Photo = styled.div`
     justify-content: center;
     margin-bottom: 30px;
 
+   
+
     img{
         width: 500px;
         height: 500px;
+
+        @media (max-width: 500px){
+            width: 400px;
+            height: 400px;
+
+        }
     }
 `;
 
@@ -140,6 +149,11 @@ const Name = styled.div`
     h1{
         font-size: 70px;
         font-family: 'Mountains of Christmas', cursive;
+
+        @media (max-width: 500px){
+            font-size: 50px;
+
+        }
     }
 
     h2{

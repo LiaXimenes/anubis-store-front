@@ -123,6 +123,13 @@ const Photo = styled.div`
     img{
         width: 500px;
         height: 500px;
+
+        @media (max-width: 500px){
+            width: 400px;
+            height: 400px;
+
+        }
+
     }
 `;
 
@@ -145,6 +152,11 @@ const Name = styled.div`
     h1{
         font-size: 70px;
         font-family: 'Mountains of Christmas', cursive;
+
+        @media (max-width: 500px){
+            font-size: 50px;
+
+        }
     }
 
     h2{

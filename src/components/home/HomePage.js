@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { BiCart } from 'react-icons/bi';
 import { BsPersonDash, BsPersonPlus } from "react-icons/bs";
@@ -9,10 +10,16 @@ import Categories from './Categories';
 import Products from './Products';
 import CartSideBar from './CartSideBar';
 
+import gato from "../../images/gato.png"
+
+
 export default function Home () {
     const [allProducts, setAllProducts] = useState('');
     const [categoryToGo, setCategoryToGo] = useState('');
     const [selectedProducts, setSelectedProducts] = useState ("")
+    const [show, setShow] = useState(false);
+
+    let history = useHistory();
 
     try {
         useEffect(()=>{
@@ -24,9 +31,9 @@ export default function Home () {
     } catch(e) {
         console.log(e);
     }
+
     function PrintProducts(){
         if (allProducts.length === 0){
-            console.log(allProducts);
             return(
                 <p>Sem estoque no momento.</p>
             );
@@ -58,18 +65,33 @@ export default function Home () {
                         </Cart>
                     </Options>
                 </Header>
-                <WelcomeBox>CONTEÚDO</WelcomeBox>
 
-                <Categories>
-                    <Each>Inserir Categorias</Each>
-                </Categories>
+                <WelcomeBox>
+
+                    <ImgBox>
+                        <img src={gato}/>
+                    </ImgBox>
+                   
+                    <Spotlight>
+                        <h1>AnúbisStore</h1>
+
+                        <Announce>
+                            <h2>FIQUE</h2> 
+                            <h3>EM CASA</h3>
+                        </Announce>
+
+                        <p><span>Nós</span> vamos até <span>você</span></p>
+                        <p>As entregas desse mês serão por nossa conta</p>
+                    </Spotlight>
+
+                </WelcomeBox>
 
                 {goToCart()}
 
-                {printProducts()}
-
                 <Categories categoryToGo={categoryToGo} setCategoryToGo={setCategoryToGo} />
+
                 <PrintProducts />
+
             </Body>
             <Footer>
                 <span>
@@ -106,7 +128,7 @@ export default function Home () {
 const Header = styled.div`
     width: 100%;
     height: 80px;
-    background: #FA7D09;
+    background: linear-gradient(#e7521e, #ee901b);
     position: fixed;
     top:0;
     z-index:5;
@@ -154,10 +176,6 @@ const Cart = styled.button`
     border-right: solid 1px #444;
 `;
 
-
-
-
-
 const Body = styled.div`
     font-family: 'Raleway', sans-serif;
     width: 100%;
@@ -173,11 +191,66 @@ const Body = styled.div`
 const WelcomeBox = styled.div`
     width: calc(100vw/2);
     height: calc(100vw/4);
-    background-color: beige;
+    background: hsla(33, 86%, 61%, 1);
+    background: radial-gradient(circle, hsla(33, 86%, 61%, 1) 0%, hsla(16, 80%, 61%, 1) 100%);
+    background: -moz-radial-gradient(circle, hsla(33, 86%, 61%, 1) 0%, hsla(16, 80%, 61%, 1) 100%);
+    background: -webkit-radial-gradient(circle, hsla(33, 86%, 61%, 1) 0%, hsla(16, 80%, 61%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#f1a648", endColorstr="#eb744a", GradientType=1 );
     margin-bottom: 80px;
     display: flex;
+`;
+
+const Spotlight = styled.div`
+    width:500px;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+
+    h1{
+        font-size: 40px;
+        font-family: 'Mountains of Christmas', cursive;
+        padding-top: 15px;
+        margin-bottom: 80px;
+    }
+
+    p{
+        font-size:20px;
+    }
+
+    span{
+        font-weight: bold;
+    }
+`;
+
+const Announce = styled.div`
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    margin-bottom: 30px;
+
+    h2{
+        font-size: 40px;
+    }
+
+    h3{
+        font-size: 40px;
+    }
+`;
+
+const ImgBox = styled.div`
+    display: flex;
+    align-items: center;
+    height: calc(100vw/4);
+
+    img{
+        width: 200px;
+        height: 200px;
+
+        :hover {
+            transform: rotate(40deg);
+            transition: 0.7s;
+        }
+    }
 `;
 
 const Footer = styled.div`
@@ -190,11 +263,11 @@ const Footer = styled.div`
     box-shadow: -5px 0px 5px 2px #C8C2BC;
     font-family: 'Raleway', sans-serif;
     padding: 15px;
+
     h1{
         font-size: 20px;
         padding-top:10px;
         padding-bottom: 15px;
-
     }
 
     p{
@@ -204,7 +277,6 @@ const Footer = styled.div`
     span{
         display: flex;
         flex-direction: column;
-
     }
 
     div{
