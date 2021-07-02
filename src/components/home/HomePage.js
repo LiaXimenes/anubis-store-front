@@ -24,7 +24,7 @@ export default function Home () {
     
     try {
         useEffect(()=>{
-            axios.get(`http://localhost:4000/homepage${categoryToGo}`).then((req)=>{
+            axios.get(`${process.env.REACT_APP_API_BASE_URL}/homepage${categoryToGo}`).then((req)=>{
                 setAllProducts(req.data);
             });
         },[categoryToGo]);
@@ -44,7 +44,7 @@ export default function Home () {
     
     function goToCart(){
         const config = {headers: {'authorization': `bearer ${user}`}}
-        axios.get(`http://localhost:4000/cart`, config).then((req)=>{
+        axios.get(`${process.env.REACT_APP_API_BASE_URL}/cart`, config).then((req)=>{
             setShow(true);
             setSelectedProducts(req.data);
         }).catch((error)=>{

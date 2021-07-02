@@ -11,7 +11,7 @@ export default function Products ({allProducts}) {
 
     function addOnCart(productId){
         const body = {productId: productId};
-        axios.post("http://localhost:4000/cart", body, config).catch((e)=>{
+        axios.post(`${process.env.REACT_APP_API_BASE_URL}/cart`, body, config).catch((e)=>{
             if (e === 400){
                 alert("você precisa estar logado para adicionar algo ao carrinho.")
             }

@@ -22,7 +22,7 @@ export default function CartSideBar({show, goToCart, setShow, selectedProducts})
                 total += amount;
             }
             setTotalPrice(total)
-            console.log(selectedProducts)
+
         }
     }, [selectedProducts])
 
@@ -57,7 +57,7 @@ export default function CartSideBar({show, goToCart, setShow, selectedProducts})
     
     function confirmOrder(){
         const config = {headers: {'authorization': `bearer ${user}`}}
-        axios.post(`http://localhost:4000/confirm`, config)
+        axios.post(`${process.env.REACT_APP_API_BASE_URL}/confirm`, config)
         
     }
 
@@ -65,7 +65,7 @@ export default function CartSideBar({show, goToCart, setShow, selectedProducts})
         const config = {headers: {
             'cartId': cartId
         }};
-        axios.delete(`http://localhost:4000/cart`, config).then(goToCart);
+        axios.delete(`${process.env.REACT_APP_API_BASE_URL}/cart`, config).then(goToCart);
     }
     return(
         <Body show={show}>
