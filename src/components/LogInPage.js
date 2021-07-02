@@ -22,20 +22,17 @@ export default function Login(){
             const listString = localStorage.getItem("list");
             const list = JSON.parse(listString);
             setUser(list)
-            console.log(list)
             history.push("/")
         }
     }, [])
 
 
     function loginCustomer(){
-        const request = axios.post("http://localhost:4000/log-in", body);
-        request.then((response) => {console.log(response.data)
-            setUser(response.data);
+        const request = axios.post(`${process.env.REACT_APP_API_BASE_URL}/log-in`, body);
+        request.then((response) => {setUser(response.data);
 
             const tokenString = JSON.stringify(user);
-            localStorage.setItem('list', tokenString);
-            console.log(localStorage.getItem('list'))   
+            localStorage.setItem('list', tokenString);   
             history.push("/")
         });
         request.catch(errors)

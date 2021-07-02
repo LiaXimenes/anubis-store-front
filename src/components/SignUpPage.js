@@ -27,12 +27,11 @@ export default function Signup(){
             setConfirmPassword(""); 
             setEmail("")
         } else{
-            const request = axios.post("http://localhost:4000/sign-up", body);
+            const request = axios.post(`${process.env.REACT_APP_API_BASE_URL}/sign-up`, body);
             request.then(() => history.push("/sign-in"))
             request.catch(errors);
 
             function errors(error){
-                console.log(error)
                 if(error.response.status === 403){
                     alert("Esse email já foi cadastrado")
                 }

@@ -7,7 +7,7 @@ export default function Categories ({setCategoryToGo}) {
     
     try {
         useEffect(()=>{
-            axios.get('http://localhost:4000/categories').then((req)=>{
+            axios.get(`${process.env.REACT_APP_API_BASE_URL}/categories`).then((req)=>{
                 setCategoriesList(req.data)
             });
         },[]);
