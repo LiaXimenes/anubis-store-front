@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import axios from 'axios'
 import { Link, useHistory } from "react-router-dom";
-import { useState, useContext, useEffect } from 'react';
+import { useState } from 'react';
 
 import gato from "../images/gato2.png"
 

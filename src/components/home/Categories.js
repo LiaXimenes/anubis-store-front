@@ -22,9 +22,7 @@ export default function Categories ({setCategoryToGo}) {
                         return(
                             <Each onClick={()=>{
                                 setCategoryToGo(`?category=${c.name}`);
-                                console.log(c.name);
-                            }} >{c.name}
-                            </Each>
+                            }} >{c.name}</Each>
                         );
                     })}
                 </Body>

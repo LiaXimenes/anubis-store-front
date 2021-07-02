@@ -1,73 +1,74 @@
 import styled from "styled-components";
 import { FiTrash2 } from "react-icons/fi";
+import axios from "axios";
 
+<<<<<<< HEAD
 export default function CartSideBar({show, setShow, selectedProducts}){
     const totalPrice = 0;
 
+=======
+export default function CartSideBar({show, goToCart, setShow, selectedProducts}){
+>>>>>>> main
     function mapOfProducts(){
         if(!selectedProducts.length){
             return(
                 <Product>
                     <p>Seu carrinho está Vazio</p>
-                </Product>
-                
+                </Product>                
             );
-        } else{
-            {selectedProducts.map((product) => {
+        } else {
+            return (selectedProducts.map((product) => {
                 return(
                     <Product>
                         <div>
-                            <h1>{product.name}</h1>
+                            <h1>{product.title}</h1>
                             <p>{product.price}</p>
                         </div>
-
-                        <ImgAndTrash>
-                            <img src={product.image}/>
-                            <button onClick={removeFromCart()}>
+                        <ImgAndTrash >
+                            <img src={product.imageUrl}/>
+                            <button onClick={()=>{removeFromCart(product.cartId)}}>
                                 <FiTrash2 size="1.5em" color="#000" />
                             </button>
                         </ImgAndTrash>
-                        
                     </Product>
-                )
-            })}
+                );
+            }));
         }
     }
-
     function confirmOrder(){
-
+        
     }
-
-    function removeFromCart(){
-        alert("deu bom");
-
+    function removeFromCart(cartId){
+        const config = {headers: {
+            'cartId': cartId
+        }};
+        axios.delete(`http://localhost:4000/cart`, config).then(goToCart);
     }
-
-
     return(
-
         <Body show={show}>
-             <SideBar >
+            <SideBar >
                 <Header>
                     <h1>Carrinho</h1>
                     <button onClick={() => setShow(false)}>X</button>
                 </Header>
-
                 <Products>
+<<<<<<< HEAD
 
                     {mapOfProducts()}
 
                 </Products>
             
+=======
+                    {mapOfProducts()}                 
+                </Products>            
+>>>>>>> main
                 <TotalPrice>
                     <h1>Preço total:</h1>
                     <p>{totalPrice}</p>
                 </TotalPrice>
-
                 <Button onClick={confirmOrder()}>
                     <p>Confirmar Pedido</p>
                 </Button>
-
             </SideBar>
         </Body>
     )
@@ -81,7 +82,7 @@ const Body = styled.div`
     top:0;
     left: 0;
     z-index: 19;
-    display: ${(props) => (props.show ? "flex" : "none")};
+    display: ${(props) => (props.show ? "flex" : "none")};    
 `;
 
 const SideBar = styled.div`
