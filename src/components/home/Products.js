@@ -11,7 +11,11 @@ export default function Products ({allProducts}) {
 
     function addOnCart(productId){
         const body = {productId: productId};
-        axios.post("http://localhost:4000/cart", body, config);
+        axios.post("http://localhost:4000/cart", body, config).catch((e)=>{
+            if (e === 400){
+                alert("você precisa estar logado para adicionar algo ao carrinho.")
+            }
+        });
     };
     
     return (

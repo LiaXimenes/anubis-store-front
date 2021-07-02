@@ -54,6 +54,7 @@ export default function CartSideBar({show, goToCart, setShow, selectedProducts})
             }));
         }
     }
+    
     function confirmOrder(){
         const config = {headers: {'authorization': `bearer ${user}`}}
         axios.post(`http://localhost:4000/confirm`, config)

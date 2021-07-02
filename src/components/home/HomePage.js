@@ -41,6 +41,7 @@ export default function Home () {
             return <Products allProducts={allProducts} />
         }
     }
+    
     function goToCart(){
         const config = {headers: {'authorization': `bearer ${user}`}}
         axios.get(`http://localhost:4000/cart`, config).then((req)=>{
