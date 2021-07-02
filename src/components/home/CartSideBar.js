@@ -1,34 +1,32 @@
 import styled from "styled-components";
 import { FiTrash2 } from "react-icons/fi";
 import axios from "axios";
-import { useEffect, useState, useContext } from "react";
+import { useContext, useEffect, useState } from 'react';
+
 import UserContext from '../../context/UserContext';
 
 export default function CartSideBar({show, goToCart, setShow, selectedProducts}){
+    const [totalPrice, setTotalPrice] = useState("");
+    const total = 0;
+
     const {user, setUser} = useContext(UserContext);
-    const [totalPrice, setTotalPrice] = useState([]);
-    let total = 0;
-    const arrayOfPrice = [];
 
     useEffect(() => {
-        if(selectedProducts.length){
+        if(selectedProducts){
             for(let i of selectedProducts){
-                console.log(i);
-                let value = i.price.replace("R$ ", "");
-                console.log(value);
-                value = value.replace(",",".");
-                console.log(value);
-                arrayOfPrice.push(value);
+                totalPrice.push(i.price)
             }
-
-            for(let i = 0; i < arrayOfPrice.length; i++){
-                let amount = parseInt(arrayOfPrice[i])
+    
+            for(let i = 0; i < selectedProducts.length; i++){
+                let amount = parseInt(selectedProducts[i])
                 total += amount;
             }
             setTotalPrice(total)
             console.log(selectedProducts)
         }
-    }, [selectedProducts]);
+    }, [selectedProducts])
+
+
 
     function mapOfProducts(){
         if(!selectedProducts.length){
@@ -56,13 +54,13 @@ export default function CartSideBar({show, goToCart, setShow, selectedProducts})
             }));
         }
     }
-    function confirmOrder(){
-        alert("Muito obrigada por comprar com a gente!! Confirmação de pedido enviada para o seu email!")
-
-        const config = {headers: {'authorization': `bearer ${user}`}}
-        axios.get('http://localhost:4000/confirm', config)
     
+    function confirmOrder(){
+        const config = {headers: {'authorization': `bearer ${user}`}}
+        axios.post(`http://localhost:4000/confirm`, config)
+        
     }
+
     function removeFromCart(cartId){
         const config = {headers: {
             'cartId': cartId
@@ -76,14 +74,17 @@ export default function CartSideBar({show, goToCart, setShow, selectedProducts})
                     <h1>Carrinho</h1>
                     <button onClick={() => setShow(false)}>X</button>
                 </Header>
+
                 <Products>
                     {mapOfProducts()}                 
-                </Products>            
+                </Products>   
+
                 <TotalPrice>
                     <h1>Preço total:</h1>
-                    <p>{`R$ ${totalPrice}`}</p>
+                    <p>{totalPrice}</p>
                 </TotalPrice>
-                <Button onClick={confirmOrder}>
+
+                <Button onClick={confirmOrder()}>
                     <p>Confirmar Pedido</p>
                 </Button>
             </SideBar>
@@ -136,7 +137,7 @@ const Header = styled.div`
     }
 `;
 
-const Products = styled.div`
+const Products = styled.ul`
     height:450px;
     overflow: scroll;
 
@@ -145,7 +146,7 @@ const Products = styled.div`
     }
 `;
 
-const Product = styled.div`
+const Product = styled.li`
     height: 80px;
     border-bottom: solid 1px #444;
     padding:20px;

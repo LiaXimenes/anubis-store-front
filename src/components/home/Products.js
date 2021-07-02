@@ -8,6 +8,7 @@ export default function Products ({allProducts}) {
     const config = {headers: {
         'authorization': `bearer ${user}`
     }};
+
     function addOnCart(productId){
         const body = {productId: productId};
         axios.post("http://localhost:4000/cart", body, config).catch((e)=>{
@@ -16,6 +17,7 @@ export default function Products ({allProducts}) {
             }
         });
     };
+    
     return (
         <Body>
             <List>

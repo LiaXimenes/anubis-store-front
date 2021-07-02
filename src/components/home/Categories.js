@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 export default function Categories ({setCategoryToGo}) {
     const [categoriesList, setCategoriesList] = useState('');
+    
     try {
         useEffect(()=>{
             axios.get('http://localhost:4000/categories').then((req)=>{
