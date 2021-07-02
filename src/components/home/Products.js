@@ -1,17 +1,17 @@
 import styled from "styled-components";
 import {useContext, useState} from 'react';
-import UserContext from '.../context/UserContext.js';
+import UserContext from '../../context/UserContext.js'
 import axios from "axios";
 
 export default function Products ({allProducts}) {
     const {user, setUser} = useContext(UserContext);
-
+    const config = {headers: {
+        'authorization': `bearer ${user}`
+    }};
     function addOnCart(productId){
-        axios.post("http://localhost:4000/cart", {productId}, {
-            'Authorization': `bearer ${user}`
-        }).then().catch()
+        const body = {productId: productId};
+        axios.post("http://localhost:4000/cart", body, config);
     };
-    console.log(allProducts);
     return (
         <Body>
             <List>

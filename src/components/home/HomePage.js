@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Products from './Products';
 import { BiCart } from 'react-icons/bi';
 import { BsPersonDash, BsPersonPlus } from "react-icons/bs";
@@ -8,12 +8,14 @@ import { FaCcVisa, FaCcMastercard, FaTelegramPlane, FaWhatsapp, FaFacebookSquare
 import Categories from './Categories';
 import CartSideBar from './CartSideBar';
 import { useHistory } from 'react-router-dom';
+import UserContext from '../../context/UserContext';
 
 export default function Home () {
     const [allProducts, setAllProducts] = useState('');
     const [categoryToGo, setCategoryToGo] = useState('');
     const [show, setShow] = useState(false);
-    const [selectedProducts, setSelectedProducts] = useState ("")
+    const [selectedProducts, setSelectedProducts] = useState ("");
+    const {user, setUser} = useContext(UserContext);
 
     let history = useHistory();
     
@@ -21,7 +23,6 @@ export default function Home () {
         useEffect(()=>{
             axios.get(`http://localhost:4000/homepage${categoryToGo}`).then((req)=>{
                 setAllProducts(req.data);
-                console.log(req.data);
             });
         },[categoryToGo]);
     } catch(e) {
@@ -29,7 +30,6 @@ export default function Home () {
     }
     function PrintProducts(){
         if (allProducts.length === 0){
-            console.log(allProducts);   
             return( 
                 <p>Sem estoque no momento.</p>
             );
@@ -38,13 +38,14 @@ export default function Home () {
         }
     }
     function goToCart(){
-        axios.get(`http://localhost:4000/cart`, {token}).then(()=>{
+        const config = {headers: {'authorization': `bearer ${user}`}}
+        axios.get(`http://localhost:4000/cart`, config).then((req)=>{
             setShow(true);
-            setSelectedProducts(req.body);
-        })
-        return  <CartSideBar selectedProducts={selectedProducts} show={show} setShow={setShow}/>
+            setSelectedProducts(req.data);
+        }).catch((error)=>{
+            console.log(error);
+        });
     }
-
     return(
         <>
             <Body>
@@ -67,7 +68,8 @@ export default function Home () {
                 <WelcomeBox>CONTEÚDO</WelcomeBox>
                 <Categories categoryToGo={categoryToGo} setCategoryToGo={setCategoryToGo} />
                 <PrintProducts />
-            </Body>
+                <CartSideBar selectedProducts={selectedProducts} show={show} setShow={setShow}/>
+                </Body>
             <Footer>
                 <span>
                     <h1>Sobre nós</h1>
@@ -77,7 +79,6 @@ export default function Home () {
                     <p>Entregas</p>
                     <p>Promoções</p>
                 </span>
-
                 <span>
                     <h1>Fale Conosco</h1>
                     <div>   
@@ -85,9 +86,7 @@ export default function Home () {
                         <FaWhatsapp size="2em" color="#fff"/>
                         <FaTelegramPlane size="2em" color="#fff"/>
                     </div>
-                    
                 </span>
-
                 <span>
                     <h1>Formas de Pagamento</h1>
                     <div>

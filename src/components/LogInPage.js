@@ -2,14 +2,11 @@ import styled from "styled-components";
 import axios from 'axios'
 import { Link, useHistory } from "react-router-dom";
 import { useState, useContext, useEffect } from 'react';
-
 import gato from "../images/gato2.png"
-
 import UserContext from '../context/UserContext';
 
 export default function Login(){
     const {user, setUser} = useContext(UserContext);
-
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 

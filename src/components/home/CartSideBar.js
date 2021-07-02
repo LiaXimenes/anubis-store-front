@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { FiTrash2 } from "react-icons/fi";
 
 export default function CartSideBar({show, setShow, selectedProducts}){
-
     function mapOfProducts(){
         if(!selectedProducts.length){
             return(
@@ -10,76 +9,49 @@ export default function CartSideBar({show, setShow, selectedProducts}){
                     <p>Seu carrinho está Vazio</p>
                 </Product>                
             );
-        } else{
-            {selectedProducts.map((product) => {
+        } else {
+            return (selectedProducts.map((product) => {
                 return(
+                    <>
                     <Product>
                         <div>
-                            <h1>{product.name}</h1>
+                            <h1>{product.title}</h1>
                             <p>{product.price}</p>
                         </div>
-
                         <ImgAndTrash>
-                            <img src={product.image}/>
-                            <button onClick={removeFromCart()}>
-                                <FiTrash2 size="1.5em" color="#000" />
-                            </button>
-                        </ImgAndTrash>
-                        
-                    </Product>
-                );
-            })}
-        }
-    }
-
-    function confirmOrder(){
-
-    }
-
-    function removeFromCart(){
-        alert("deu bom");
-
-    }
-
-
-    return(
-
-        <Body show={show}>
-             <SideBar >
-                <Header>
-                    <h1>Carrinho</h1>
-                    <button onClick={() => setShow(false)}>X</button>
-                </Header>
-
-                <Products>
-
-                    {mapOfProducts()}
-
-                    <Product>
-                        <div>
-                            <h1>Coleira Colorida para cahorro</h1>
-                            <p>0,00</p>
-                        </div>
-                        
-                        <ImgAndTrash>
-                            <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSJNZuV-Rr0lfWpTC8K3gu4k1fCCXAaqzLHFUrRvRZ6k67t9uNsXB_M77gP_H5efqL98lUb-13L&usqp=CAc"/>
+                            <img src={product.imageUrl}/>
                             <button onClick={removeFromCart}>
                                 <FiTrash2 size="1.5em" color="#000" />
                             </button>
                         </ImgAndTrash>
-
                     </Product>
-                </Products>
-            
+                    </>
+                );
+            }));
+        }
+    }
+    function confirmOrder(){
+        //to-do
+    }
+    function removeFromCart(){
+    }
+    return(
+        <Body show={show}>
+            <SideBar >
+                <Header>
+                    <h1>Carrinho</h1>
+                    <button onClick={() => setShow(false)}>X</button>
+                </Header>
+                <Products>
+                    {mapOfProducts()}                 
+                </Products>            
                 <TotalPrice>
                     <h1>Preço total:</h1>
                     <p>0.000,00</p>
                 </TotalPrice>
-
                 <Button onClick={confirmOrder()}>
                     <p>Confirmar Pedido</p>
                 </Button>
-
             </SideBar>
         </Body>
     )
@@ -93,7 +65,7 @@ const Body = styled.div`
     top:0;
     left: 0;
     z-index: 19;
-    display: ${(props) => (props.show ? "flex" : "none")};
+    display: ${(props) => (props.show ? "flex" : "none")};    
 `;
 
 const SideBar = styled.div`
