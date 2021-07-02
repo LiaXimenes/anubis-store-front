@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { FiTrash2 } from "react-icons/fi";
+import axios from "axios";
 
-export default function CartSideBar({show, setShow, selectedProducts}){
+export default function CartSideBar({show, goToCart, setShow, selectedProducts}){
     function mapOfProducts(){
         if(!selectedProducts.length){
             return(
@@ -12,28 +13,30 @@ export default function CartSideBar({show, setShow, selectedProducts}){
         } else {
             return (selectedProducts.map((product) => {
                 return(
-                    <>
                     <Product>
                         <div>
                             <h1>{product.title}</h1>
                             <p>{product.price}</p>
                         </div>
-                        <ImgAndTrash>
+                        <ImgAndTrash >
                             <img src={product.imageUrl}/>
-                            <button onClick={removeFromCart}>
+                            <button onClick={()=>{removeFromCart(product.cartId)}}>
                                 <FiTrash2 size="1.5em" color="#000" />
                             </button>
                         </ImgAndTrash>
                     </Product>
-                    </>
                 );
             }));
         }
     }
     function confirmOrder(){
-        //to-do
+        
     }
-    function removeFromCart(){
+    function removeFromCart(cartId){
+        const config = {headers: {
+            'cartId': cartId
+        }};
+        axios.delete(`http://localhost:4000/cart`, config).then(goToCart);
     }
     return(
         <Body show={show}>

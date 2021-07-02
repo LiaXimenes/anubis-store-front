@@ -68,7 +68,7 @@ export default function Home () {
                 <WelcomeBox>CONTEÚDO</WelcomeBox>
                 <Categories categoryToGo={categoryToGo} setCategoryToGo={setCategoryToGo} />
                 <PrintProducts />
-                <CartSideBar selectedProducts={selectedProducts} show={show} setShow={setShow}/>
+                <CartSideBar goToCart={goToCart} selectedProducts={selectedProducts} show={show} setShow={setShow}/>
                 </Body>
             <Footer>
                 <span>
