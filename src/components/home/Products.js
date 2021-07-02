@@ -4,11 +4,8 @@ export default function Products ({allProducts, setSelectedProducts}) {
     function addOnCart(id){
         //to-do
     };
-<<<<<<< HEAD
     
-=======
     console.log(allProducts);
->>>>>>> main
     return (
         <Body>
             <List>
