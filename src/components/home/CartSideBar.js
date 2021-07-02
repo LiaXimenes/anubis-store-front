@@ -1,14 +1,33 @@
 import styled from "styled-components";
 import { FiTrash2 } from "react-icons/fi";
 import axios from "axios";
+import { useContext, useEffect, useState } from 'react';
 
-<<<<<<< HEAD
-export default function CartSideBar({show, setShow, selectedProducts}){
-    const totalPrice = 0;
+import UserContext from '../../context/UserContext';
 
-=======
 export default function CartSideBar({show, goToCart, setShow, selectedProducts}){
->>>>>>> main
+    const [totalPrice, setTotalPrice] = useState("");
+    const total = 0;
+
+    const {user, setUser} = useContext(UserContext);
+
+    useEffect(() => {
+        if(selectedProducts){
+            for(let i of selectedProducts){
+                totalPrice.push(i.price)
+            }
+    
+            for(let i = 0; i < selectedProducts.length; i++){
+                let amount = parseInt(selectedProducts[i])
+                total += amount;
+            }
+            setTotalPrice(total)
+            console.log(selectedProducts)
+        }
+    }, [selectedProducts])
+
+
+
     function mapOfProducts(){
         if(!selectedProducts.length){
             return(
@@ -36,8 +55,11 @@ export default function CartSideBar({show, goToCart, setShow, selectedProducts})
         }
     }
     function confirmOrder(){
+        const config = {headers: {'authorization': `bearer ${user}`}}
+        axios.post(`http://localhost:4000/confirm`, config)
         
     }
+
     function removeFromCart(cartId){
         const config = {headers: {
             'cartId': cartId
@@ -51,21 +73,16 @@ export default function CartSideBar({show, goToCart, setShow, selectedProducts})
                     <h1>Carrinho</h1>
                     <button onClick={() => setShow(false)}>X</button>
                 </Header>
+
                 <Products>
-<<<<<<< HEAD
-
-                    {mapOfProducts()}
-
-                </Products>
-            
-=======
                     {mapOfProducts()}                 
-                </Products>            
->>>>>>> main
+                </Products>   
+
                 <TotalPrice>
                     <h1>Preço total:</h1>
                     <p>{totalPrice}</p>
                 </TotalPrice>
+
                 <Button onClick={confirmOrder()}>
                     <p>Confirmar Pedido</p>
                 </Button>

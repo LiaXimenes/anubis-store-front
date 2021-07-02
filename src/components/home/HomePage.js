@@ -7,11 +7,9 @@ import { FaCcVisa, FaCcMastercard, FaTelegramPlane, FaWhatsapp, FaFacebookSquare
 import { useHistory } from 'react-router-dom';
 
 import UserContext from '../../context/UserContext';
-
 import Products from './Products';
 import Categories from './Categories';
 import CartSideBar from './CartSideBar';
-
 import gato from "../../images/gato.png"
 
 
@@ -92,8 +90,6 @@ export default function Home () {
                     </Spotlight>
 
                 </WelcomeBox>
-
-                {goToCart()}
 
                 <Categories categoryToGo={categoryToGo} setCategoryToGo={setCategoryToGo} />
 
