@@ -1,8 +1,35 @@
 import styled from "styled-components";
 import { FiTrash2 } from "react-icons/fi";
 import axios from "axios";
+import { useEffect, useState, useContext } from "react";
+import UserContext from '../../context/UserContext';
 
 export default function CartSideBar({show, goToCart, setShow, selectedProducts}){
+    const {user, setUser} = useContext(UserContext);
+    const [totalPrice, setTotalPrice] = useState([]);
+    let total = 0;
+    const arrayOfPrice = [];
+
+    useEffect(() => {
+        if(selectedProducts.length){
+            for(let i of selectedProducts){
+                console.log(i);
+                let value = i.price.replace("R$ ", "");
+                console.log(value);
+                value = value.replace(",",".");
+                console.log(value);
+                arrayOfPrice.push(value);
+            }
+
+            for(let i = 0; i < arrayOfPrice.length; i++){
+                let amount = parseInt(arrayOfPrice[i])
+                total += amount;
+            }
+            setTotalPrice(total)
+            console.log(selectedProducts)
+        }
+    }, [selectedProducts]);
+
     function mapOfProducts(){
         if(!selectedProducts.length){
             return(
@@ -30,7 +57,11 @@ export default function CartSideBar({show, goToCart, setShow, selectedProducts})
         }
     }
     function confirmOrder(){
-        
+        alert("Muito obrigada por comprar com a gente!! Confirmação de pedido enviada para o seu email!")
+
+        const config = {headers: {'authorization': `bearer ${user}`}}
+        axios.get('http://localhost:4000/confirm', config)
+    
     }
     function removeFromCart(cartId){
         const config = {headers: {
@@ -50,9 +81,9 @@ export default function CartSideBar({show, goToCart, setShow, selectedProducts})
                 </Products>            
                 <TotalPrice>
                     <h1>Preço total:</h1>
-                    <p>0.000,00</p>
+                    <p>{`R$ ${totalPrice}`}</p>
                 </TotalPrice>
-                <Button onClick={confirmOrder()}>
+                <Button onClick={confirmOrder}>
                     <p>Confirmar Pedido</p>
                 </Button>
             </SideBar>
