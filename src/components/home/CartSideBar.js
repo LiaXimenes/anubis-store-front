@@ -14,7 +14,7 @@ export default function CartSideBar({show, goToCart, setShow, selectedProducts})
     useEffect(() => {
         if(selectedProducts){
             for(let i of selectedProducts){
-                totalPrice.push(i.price.replace("R$ ", ""))
+                totalPrice.push(i.price.replace("$ ", ""))
 
                 console.log(totalPrice)
             }
