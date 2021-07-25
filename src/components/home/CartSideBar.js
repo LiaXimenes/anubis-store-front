@@ -6,22 +6,27 @@ import { useContext, useEffect, useState } from 'react';
 import UserContext from '../../context/UserContext';
 
 export default function CartSideBar({show, goToCart, setShow, selectedProducts}){
-    const [totalPrice, setTotalPrice] = useState("");
-    const total = 0;
+    const [total, setTotal] = useState("");
+    const totalPrice = [];
 
     const {user, setUser} = useContext(UserContext);
 
     useEffect(() => {
         if(selectedProducts){
             for(let i of selectedProducts){
-                totalPrice.push(i.price)
+                totalPrice.push(i.price.replace("R$ ", "").replace(",", "."))
+
+                console.log(totalPrice)
             }
-    
-            for(let i = 0; i < selectedProducts.length; i++){
-                let amount = parseInt(selectedProducts[i])
-                total += amount;
+
+            let amount = 0;
+            for(let i = 0; i < totalPrice.length; i++){
+                amount += parseFloat(totalPrice[i]);
+
+                console.log(amount)
+                
             }
-            setTotalPrice(total)
+            setTotal(amount)
 
         }
     }, [selectedProducts])
@@ -56,8 +61,9 @@ export default function CartSideBar({show, goToCart, setShow, selectedProducts})
     }
     
     function confirmOrder(){
+        alert("Obrigada pela preferência! Em breve enviaremos um e-mail com as informações do seu pedido!")
         const config = {headers: {'authorization': `bearer ${user}`}}
-        axios.post(`${process.env.REACT_APP_API_BASE_URL}/confirm`, config)
+        axios.post(`${process.env.REACT_APP_API_BASE_URL}/confirm`, {}, config)
         
     }
 
@@ -81,10 +87,10 @@ export default function CartSideBar({show, goToCart, setShow, selectedProducts})
 
                 <TotalPrice>
                     <h1>Preço total:</h1>
-                    <p>{totalPrice}</p>
+                    <p>{total}</p>
                 </TotalPrice>
 
-                <Button onClick={confirmOrder()}>
+                <Button onClick={confirmOrder}>
                     <p>Confirmar Pedido</p>
                 </Button>
             </SideBar>
