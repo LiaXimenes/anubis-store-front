@@ -13,8 +13,8 @@ export default function Products ({allProducts}) {
         console.log(user)
         const body = {productId: productId};
         axios.post(`${process.env.REACT_APP_API_BASE_URL}/cart`, body, config).catch((e)=>{
-            if (e === 400){
-                alert("você precisa estar logado para adicionar algo ao carrinho.")
+            if (e.status === 400){
+                alert("Você precisa fazer o log-in para adicionar algo ao carrinho.")
             }
         });
     };
