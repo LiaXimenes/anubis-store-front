@@ -10,6 +10,7 @@ export default function Products ({allProducts}) {
     }};
 
     function addOnCart(productId){
+        console.log(user)
         const body = {productId: productId};
         axios.post(`${process.env.REACT_APP_API_BASE_URL}/cart`, body, config).catch((e)=>{
             if (e === 400){

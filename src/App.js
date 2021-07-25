@@ -21,9 +21,6 @@ export default function App () {
                     </Route>
                     <Route path='/sign-in' exact>
                         <LogInPage />
-                    </Route>
-                    <Route path='/cart' exact>
-                        {/* rota */}
                     </Route>                    
                 </Switch>
             </Router>
