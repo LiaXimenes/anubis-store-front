@@ -14,7 +14,7 @@ export default function CartSideBar({show, goToCart, setShow, selectedProducts})
     useEffect(() => {
         if(selectedProducts){
             for(let i of selectedProducts){
-                totalPrice.push(i.price.replace("R$ ", "").replace(",", "."))
+                totalPrice.push(i.price.replace("R$ ", ""))
 
                 console.log(totalPrice)
             }
@@ -61,10 +61,10 @@ export default function CartSideBar({show, goToCart, setShow, selectedProducts})
     }
     
     function confirmOrder(){
-        alert("Obrigada pela preferência! Em breve enviaremos um e-mail com as informações do seu pedido!")
         const config = {headers: {'authorization': `bearer ${user}`}}
         axios.post(`${process.env.REACT_APP_API_BASE_URL}/confirm`, {}, config)
-        
+
+        alert("Obrigada pela preferência! Em breve enviaremos um e-mail com as informações do seu pedido!")
     }
 
     function removeFromCart(cartId){
