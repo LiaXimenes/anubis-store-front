@@ -1,10 +1,11 @@
 import styled from "styled-components";
-import {useContext, useState} from 'react';
+import {useContext} from 'react';
 import UserContext from '../../context/UserContext.js'
 import axios from "axios";
 
 export default function Products ({allProducts}) {
-    const {user, setUser} = useContext(UserContext);
+    const {user} = useContext(UserContext);
+
     const config = {headers: {
         'authorization': `bearer ${user}`
     }};
@@ -48,6 +49,7 @@ const Body = styled.div`
     height: auto;
     display: flex;
 `;
+
 const List = styled.div`
     width: auto;
     height: auto;
@@ -55,6 +57,7 @@ const List = styled.div`
     justify-content: center;
     flex-wrap: wrap;
 `;
+
 const ProductBox = styled.div`
     width: 200px;
     height: 300px;
@@ -62,7 +65,12 @@ const ProductBox = styled.div`
     box-shadow: 5px 10px 8px #888888;
     position: relative;
     margin: 50px 20px;
+
+    @media (max-width: 500px){
+        margin-left: 0px;
+    }
 `;
+
 const Button = styled.button`
     width: 140px;
     height: 30px;
@@ -78,25 +86,27 @@ const Button = styled.button`
     justify-content: center;
     border-radius: 5px;
 
-
     :hover {
         background-color: #FA7D09;
         font-weight: bold;
+        cursor: pointer;
     }
 `;
+
 const Image = styled.div`
     width: 160px;
     height: 160px;
     top: -40px;
     left: 20px;
     position: absolute;
+
     img {
         width: 160px;
         height: 160px;
         box-shadow: 5px 5px 2px #CACACA;
-        
     }
 `;
+
 const Infos = styled.div`
     position: absolute;
     bottom: 0px;
@@ -104,12 +114,15 @@ const Infos = styled.div`
     width: 100%;
     height: 170px;
     padding: 15px;
+
     h1 {
         color: #1A1C20;
         font-weight: 500;
         font-size: 20px;
         line-height: 32px;
-    } h2 {
+    } 
+    
+    h2 {
         font-weight: 300;
         font-size: 18px;
         line-height: 32px;
