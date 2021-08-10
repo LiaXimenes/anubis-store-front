@@ -14,17 +14,12 @@ export default function CartSideBar({show, goToCart, setShow, selectedProducts})
     useEffect(() => {
         if(selectedProducts){
             for(let i of selectedProducts){
-                totalPrice.push(i.price.replace("$ ", ""))
-
-                console.log(totalPrice)
+                totalPrice.push(i.price.replace("$", ""))
             }
 
             let amount = 0;
             for(let i = 0; i < totalPrice.length; i++){
                 amount += parseFloat(totalPrice[i]);
-
-                console.log(amount)
-                
             }
             setTotal(amount)
 

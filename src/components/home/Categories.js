@@ -47,14 +47,19 @@ const Body = styled.ul`
     ::-webkit-scrollbar {
         display: none;
     }
+
+    @media (max-width: 500px){
+        width: 300px;
+    }
 `;
+
 const Each = styled.li`
-    width: 100px;
     height: 40px;
     padding: 10px;
 
     :hover {
         background: #FA7D09;
         font-weight: bold;
+        cursor: pointer;
     }
 `;

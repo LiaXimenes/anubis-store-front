@@ -83,7 +83,7 @@ export default function Home () {
 
                         <Announce>
                             <h2>FIQUE</h2> 
-                            <h3>EM CASA</h3>
+                            <h2>EM CASA</h2>
                         </Announce>
 
                         <p><span>Nós</span> vamos até <span>você</span></p>
@@ -95,8 +95,11 @@ export default function Home () {
                 <Categories categoryToGo={categoryToGo} setCategoryToGo={setCategoryToGo} />
 
                 <PrintProducts />
+
                 <CartSideBar goToCart={goToCart} selectedProducts={selectedProducts} show={show} setShow={setShow}/>
-                </Body>
+
+            </Body>
+
             <Footer>
                 <span>
                     <h1>Sobre nós</h1>
@@ -147,7 +150,12 @@ const Name = styled.div`
     p{
         font-size:40px;
         font-family: 'Mountains of Christmas', cursive;
+
+        :hover{
+            cursor: pointer;
+        }
     }
+    
 `;
 
 const Options = styled.div`
@@ -168,7 +176,8 @@ const Options = styled.div`
         justify-content: center;
 
         :hover {
-        background-color: #FF9234;
+            background-color: #FF9234;
+            cursor: pointer;
         }
     }
 `;
@@ -199,6 +208,17 @@ const WelcomeBox = styled.div`
     filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#f1a648", endColorstr="#eb744a", GradientType=1 );
     margin-bottom: 80px;
     display: flex;
+
+    @media (max-width: 800px){
+        width: 400px;
+        height: 200px;
+    }
+
+
+    @media (max-width: 500px){
+        width: 300px;
+        height: 150px;
+    }
 `;
 
 const Spotlight = styled.div`
@@ -207,15 +227,29 @@ const Spotlight = styled.div`
     flex-direction: column;
     align-items:center;
 
+
     h1{
         font-size: 40px;
         font-family: 'Mountains of Christmas', cursive;
         padding-top: 15px;
         margin-bottom: 80px;
+
+        @media (max-width: 1200px){
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 500px){
+            font-size: 20px;
+        }
     }
 
     p{
         font-size:20px;
+
+        @media (max-width: 800px){
+            font-size: 15px;
+        }
     }
 
     span{
@@ -229,12 +263,20 @@ const Announce = styled.div`
     align-items: center;
     margin-bottom: 30px;
 
-    h2{
-        font-size: 40px;
+    @media (max-width: 1000px){
+        margin-bottom: 10px;
     }
 
-    h3{
+    h2{
         font-size: 40px;
+
+        @media (max-width: 1000px){
+            font-size: 20px;
+        }
+
+        @media (max-width: 500px){
+            font-size: 10px;
+        }
     }
 `;
 
@@ -248,15 +290,26 @@ const ImgBox = styled.div`
         height: 200px;
 
         :hover {
-            transform: rotate(40deg);
-            transition: 0.7s;
+            transform: rotate(360deg);
+            transition: 1s;
+        }
+
+        @media (max-width: 800px){
+            width: 150px;
+            height: 150px;
+            margin-top:20px;
+        }
+
+        @media (max-width: 500px){
+            width: 100px;
+            height: 100px;
+            margin-top:20px;
         }
     }
 `;
 
 const Footer = styled.div`
     width:100%;
-    height: 200px;
     background: #AAAAAA;
     display: flex;
     flex-direction: row;
@@ -265,10 +318,14 @@ const Footer = styled.div`
     font-family: 'Raleway', sans-serif;
     padding: 15px;
 
+    @media (max-width: 500px){
+        flex-direction: column;
+    }
+
     h1{
         font-size: 20px;
         padding-top:10px;
-        padding-bottom: 15px;
+        padding-bottom: 10px;
     }
 
     p{
@@ -278,6 +335,10 @@ const Footer = styled.div`
     span{
         display: flex;
         flex-direction: column;
+
+        @media (max-width: 500px){
+            padding-bottom: 15px;
+        }
     }
 
     div{
