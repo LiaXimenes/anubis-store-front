@@ -33,4 +33,4 @@ npm i
 ``` bash
 npm start
 ```
-Finally access http://localhost:3000 on your favorite browser
+6. Finally access http://localhost:3000 on your favorite browser
