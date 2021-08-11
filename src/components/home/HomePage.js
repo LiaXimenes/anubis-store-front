@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {api} from "../services/api";
+import {api} from "../../services/api";
 import { useContext, useEffect, useState } from 'react';
 import { BiCart } from 'react-icons/bi';
 import { BsPersonDash, BsPersonPlus } from "react-icons/bs";

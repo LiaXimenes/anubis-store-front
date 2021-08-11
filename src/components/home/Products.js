@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {useContext} from 'react';
 import UserContext from '../../context/UserContext.js'
-import {api} from "../services/api";
+import {api} from "../../services/api";
 
 export default function Products ({allProducts}) {
     const {user} = useContext(UserContext);

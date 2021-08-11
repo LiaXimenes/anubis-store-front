@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { FiTrash2 } from "react-icons/fi";
-import {api} from "../services/api";
+import {api} from "../../services/api";
 import { useContext, useEffect, useState } from 'react';
 
 import UserContext from '../../context/UserContext';
