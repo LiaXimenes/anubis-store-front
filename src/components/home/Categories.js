@@ -1,4 +1,4 @@
-import axios from "axios";
+import {api} from "../services/api";
 import { useEffect, useState } from "react";
 import styled from 'styled-components';
 
@@ -7,7 +7,7 @@ export default function Categories ({setCategoryToGo}) {
     
     try {
         useEffect(()=>{
-            axios.get(`${process.env.REACT_APP_API_BASE_URL}/categories`).then((req)=>{
+            api.get(`/categories`).then((req)=>{
                 setCategoriesList(req.data)
             });
         },[]);

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import axios from 'axios'
+import {api} from "../services/api";
 import { Link, useHistory } from "react-router-dom";
 import { useState } from 'react';
 
@@ -27,7 +27,7 @@ export default function Signup(){
             setConfirmPassword(""); 
             setEmail("")
         } else{
-            const request = axios.post(`${process.env.REACT_APP_API_BASE_URL}/sign-up`, body);
+            const request = api.post(`/sign-up`, body);
             request.then(() => history.push("/sign-in"))
             request.catch(errors);
 

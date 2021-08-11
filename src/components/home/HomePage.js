@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import axios from 'axios';
+import {api} from "../services/api";
 import { useContext, useEffect, useState } from 'react';
 import { BiCart } from 'react-icons/bi';
 import { BsPersonDash, BsPersonPlus } from "react-icons/bs";
@@ -24,7 +24,7 @@ export default function Home () {
     
     try {
         useEffect(()=>{
-            axios.get(`${process.env.REACT_APP_API_BASE_URL}/homepage${categoryToGo}`).then((req)=>{
+            api.get(`/homepage${categoryToGo}`).then((req)=>{
                 setAllProducts(req.data);
             });
         },[categoryToGo]);
@@ -44,7 +44,7 @@ export default function Home () {
     
     function goToCart(){
         const config = {headers: {'authorization': `bearer ${user}`}}
-        axios.get(`${process.env.REACT_APP_API_BASE_URL}/cart`, config).then((req)=>{
+        api.get(`/cart`, config).then((req)=>{
             setShow(true);
             setSelectedProducts(req.data);
         }).catch((error)=>{

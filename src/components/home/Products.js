@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {useContext} from 'react';
 import UserContext from '../../context/UserContext.js'
-import axios from "axios";
+import {api} from "../services/api";
 
 export default function Products ({allProducts}) {
     const {user} = useContext(UserContext);
@@ -13,7 +13,7 @@ export default function Products ({allProducts}) {
     function addOnCart(productId){
         console.log(user)
         const body = {productId: productId};
-        axios.post(`${process.env.REACT_APP_API_BASE_URL}/cart`, body, config).catch((e)=>{
+        api.post(`/cart`, body, config).catch((e)=>{
             console.log()
             if (e.response.status === 400){
                 alert("Você precisa fazer o log-in para adicionar algo ao carrinho.")
