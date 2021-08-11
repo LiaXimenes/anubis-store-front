@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import axios from 'axios'
+import {api} from "../services/api";
 import { Link, useHistory } from "react-router-dom";
 import { useState, useContext, useEffect } from 'react';
 import gato from "../images/gato2.png"
@@ -28,7 +28,7 @@ export default function Login(){
 
 
     function loginCustomer(){
-        const request = axios.post(`${process.env.REACT_APP_API_BASE_URL}/log-in`, body);
+        const request = api.post(`/log-in`, body);
         request.then((response) => {setUser(response.data);
 
             const tokenString = JSON.stringify(user);

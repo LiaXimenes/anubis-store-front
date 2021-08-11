@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { FiTrash2 } from "react-icons/fi";
-import axios from "axios";
+import {api} from "../../services/api";
 import { useContext, useEffect, useState } from 'react';
 
 import UserContext from '../../context/UserContext';
@@ -57,7 +57,7 @@ export default function CartSideBar({show, goToCart, setShow, selectedProducts})
     
     function confirmOrder(){
         const config = {headers: {'authorization': `bearer ${user}`}}
-        axios.post(`${process.env.REACT_APP_API_BASE_URL}/confirm`, {}, config)
+        api.post(`/confirm`, {}, config)
 
         alert("Obrigada pela preferência! Em breve enviaremos um e-mail com as informações do seu pedido!")
     }
@@ -66,7 +66,7 @@ export default function CartSideBar({show, goToCart, setShow, selectedProducts})
         const config = {headers: {
             'cartId': cartId
         }};
-        axios.delete(`${process.env.REACT_APP_API_BASE_URL}/cart`, config).then(goToCart);
+        api.delete(`/cart`, config).then(goToCart);
     }
     return(
         <Body show={show}>
