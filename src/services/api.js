@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export const api = axios.create({
-    baseURL: 'http://anubis-back-end.herokuapp.com/'
+    baseURL: 'https://anubis-back-end.herokuapp.com/'
 });
